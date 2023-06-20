@@ -243,7 +243,11 @@
                         <td th:unless="${training.price != training.regularPrice}">
                             <span th:text="|${#numbers.formatDecimal(training.price, 0, 'NONE', 0, 'COMMA')} zł|"></span>
                         </td>
-                        <td th:text="${training.dates.split(', ')[0]}"></td>
+                        <td>
+                            <span th:if="${training.dates.isEmpty()}">
+                            Aktualnie nie ma planowanych terminów. Zapraszamy do kontaktu mailowego lub telefonicznego.</span>
+                            <span th:unless="${training.dates.isEmpty()}" th:text="${training.dates.split(', ')[0]}"></span>
+                        </td>
                         <td>
                             <a th:href="'/szkolenie/' + ${training.description.url} + '/' + ${training.id}">
                                 <button class="btn btn-primary">Szczegóły i zapisy</button>
